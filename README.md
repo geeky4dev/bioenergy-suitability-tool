@@ -89,13 +89,12 @@ ________________________________________
 •	PDF report formatting with libraries like jsPDF  
 •	Deployment instructions & Docker support  
 ________________________________________
+📄 License  
+MIT License 
+________________________________________
 🙌 Contributing  
 Feel free to open issues or submit pull requests! All contributions welcome.  
-________________________________________
-📄 License  
-MIT License — use freely, with attribution. Contributions welcome!  
 Made by geeky4dev with ☀️ and ❤️ for solar energy enthusiasts!  
-
 ________________________________________
 💬 Questions?  
 Reach out to me on geeky4dev or email at geeky4dev@gmail.com.  
