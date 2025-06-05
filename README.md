@@ -1,4 +1,4 @@
-🌿 Bioenergy Site Suitability Tool
+🌿 Bioenergy Site Suitability Tool  
 A React + Flask full-stack app for managing, filtering, and visualizing bioenergy project sites on an interactive map — with the ability to add new sites and generate PDF reports.
 ________________________________________
 📁 Folder Structure  
