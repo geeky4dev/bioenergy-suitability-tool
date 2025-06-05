@@ -33,8 +33,7 @@ ________________________________________
 cd backend  
 python3 -m venv venv               # Create virtual environment
 source venv/bin/activate           # Activate (Linux/macOS)
-# OR on Windows:
-# venv\Scripts\activate
+venv\Scripts\activate              # on Windows
 
 pip install -r requirements.txt   # Install backend dependencies
 
