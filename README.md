@@ -1,22 +1,22 @@
 🌿 Bioenergy Site Suitability Tool
 A React + Flask full-stack app for managing, filtering, and visualizing bioenergy project sites on an interactive map — with the ability to add new sites and generate PDF reports.
 ________________________________________
-📁 Folder Structure
-bioenergy-suitability-tool/
-├── backend/                # Flask backend API
-│   ├── app.py              # Main Flask app with API endpoints
-│   ├── requirements.txt    # Python dependencies
-│   └── ...                 # Additional backend modules, models, utils (optional)
-├── frontend/               # React frontend app
-│   ├── src/
-│   │   ├── App.jsx         # Main React component (UI, map, filters, forms)
-│   │   ├── index.jsx       # React entry point
-│   │   └── ...             # Other components, styles, assets
-│   ├── package.json        # Frontend dependencies and scripts
-│   ├── vite.config.js      # Vite config (dev server & proxy)
-│   └── ...                 # Other frontend configs
-├── README.md               # This file
-└── .gitignore              # Ignore node_modules, env files, etc.
+📁 Folder Structure  
+bioenergy-suitability-tool/  
+├── backend/                # Flask backend API  
+│   ├── app.py              # Main Flask app with API endpoints   
+│   ├── requirements.txt    # Python dependencies  
+│   └── ...                 # Additional backend modules, models, utils (optional)  
+├── frontend/               # React frontend app  
+│   ├── src/  
+│   │   ├── App.jsx         # Main React component (UI, map, filters, forms)  
+│   │   ├── index.jsx       # React entry point  
+│   │   └── ...             # Other components, styles, assets  
+│   ├── package.json        # Frontend dependencies and scripts  
+│   ├── vite.config.js      # Vite config (dev server & proxy)  
+│   └── ...                 # Other frontend configs  
+├── README.md               # This file  
+└── .gitignore              # Ignore node_modules, env files, etc. 
 ________________________________________
 🚀 Getting Started
 Follow these steps to run the project locally on your machine.
