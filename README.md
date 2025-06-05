@@ -29,18 +29,18 @@ git clone https://github.com/yourusername/bioenergy-suitability-tool.git
 cd bioenergy-suitability-tool
 ________________________________________
 2. Setup Backend (Flask API)  
-💡 Make sure you have Python 3.8+ and pip installed.  
-cd backend  
-python3 -m venv venv               # Create virtual environment
-source venv/bin/activate           # Activate (Linux/macOS)
-venv\Scripts\activate              # on Windows
+💡 Make sure you have Python 3.8+ and pip installed.    
+cd backend    
+python3 -m venv venv               # Create virtual environment  
+source venv/bin/activate           # Activate (Linux/macOS)  
+venv\Scripts\activate              # on Windows  
 
-pip install -r requirements.txt    # Install backend dependencies
+pip install -r requirements.txt    # Install backend dependencies  
 
-export FLASK_APP=app.py            # Linux/macOS
-set FLASK_APP=app.py               # Windows
+export FLASK_APP=app.py            # Linux/macOS  
+set FLASK_APP=app.py               # Windows  
 
-flask run                          # Start Flask backend server on http://localhost:5000
+flask run                          # Start Flask backend server on http://localhost:5000  
 ________________________________________
 3. Setup Frontend (React app)
 Open a new terminal:
