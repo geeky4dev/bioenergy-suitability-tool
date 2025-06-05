@@ -28,9 +28,10 @@ Follow these steps to run the project locally on your machine.
 git clone https://github.com/yourusername/bioenergy-suitability-tool.git
 cd bioenergy-suitability-tool
 ________________________________________
-2. Setup Backend (Flask API)  
-💡 Make sure you have Python 3.8+ and pip installed.    
-cd backend    
+2. Setup Backend (Flask API)
+💡 Make sure you have Python 3.8+ and pip installed.
+  
+cd backend      
 python3 -m venv venv               # Create virtual environment  
 source venv/bin/activate           # Activate (Linux/macOS)  
 venv\Scripts\activate              # on Windows  
