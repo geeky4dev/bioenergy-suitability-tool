@@ -95,7 +95,7 @@ MIT License
 ________________________________________
 🙌 Contributing  
 Feel free to open issues or submit pull requests! All contributions welcome.  
-Made by geeky4dev with ☀️ and ❤️ for solar energy enthusiasts!  
+Made by geeky4dev with ☀️ and ❤️ for renewable energy enthusiasts!  
 ________________________________________
 💬 Questions?  
 Reach out to me on geeky4dev or email at geeky4dev@gmail.com.  
