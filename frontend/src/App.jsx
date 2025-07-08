@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
-// 👉 Cargar URL base del backend desde .env
 const API_BASE = import.meta.env.VITE_API_URL || '';
 
 function App() {
@@ -114,7 +113,6 @@ Suitability Score: ${site.suitability_score}
     <div style={{ padding: '1rem' }}>
       <h1>🌱 Bioenergy Site Suitability Tool</h1>
 
-      {/* Filtros */}
       <form onSubmit={handleFilter} style={{ marginBottom: '1rem' }}>
         <label>
           Zoning:{' '}
@@ -125,22 +123,18 @@ Suitability Score: ${site.suitability_score}
             <option value="rural">Rural</option>
           </select>
         </label>{' '}
-
         <label>
           Min Area (ha):{' '}
           <input type="number" name="min_area" value={filters.min_area} onChange={handleChange} />
         </label>{' '}
-
         <label>
           Max Feedstock (km):{' '}
           <input type="number" name="max_feedstock" value={filters.max_feedstock} onChange={handleChange} />
         </label>{' '}
-
         <label>
           Max Grid (km):{' '}
           <input type="number" name="max_grid" value={filters.max_grid} onChange={handleChange} />
         </label>{' '}
-
         <button type="submit">Apply Filters</button>
       </form>
 
@@ -148,7 +142,6 @@ Suitability Score: ${site.suitability_score}
         🌍 Use the filters to view bioenergy sites based on zoning, area, and proximity to feedstock and grid.
       </p>
 
-      {/* Mapa interactivo */}
       <MapContainer center={[0, 0]} zoom={2} style={{ height: '500px' }}>
         <TileLayer
           attribution='&copy; OpenStreetMap contributors'
@@ -168,7 +161,6 @@ Suitability Score: ${site.suitability_score}
         ))}
       </MapContainer>
 
-      {/* Formulario para agregar nuevo sitio */}
       <form onSubmit={handleAddSite} style={{ marginBottom: '1rem', border: '1px solid #ccc', padding: '1rem', borderRadius: '8px' }}>
         <h2>Add New Site</h2>
 
@@ -208,7 +200,6 @@ Suitability Score: ${site.suitability_score}
         <button type="submit">Add Site</button>
       </form>
 
-      {/* Botón para generar reporte PDF */}
       <button onClick={generatePDF} style={{ marginBottom: '1rem' }}>
         Generate PDF Report
       </button>
@@ -217,6 +208,22 @@ Suitability Score: ${site.suitability_score}
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
