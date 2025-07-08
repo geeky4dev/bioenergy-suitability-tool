@@ -2,7 +2,10 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
-// ✅ Usar rutas absolutas hacia /images/ en producción
+// 🔥 OBLIGATORIO: eliminar método por defecto
+delete L.Icon.Default.prototype._getIconUrl;
+
+// 🔥 IMPORTANTE: usar rutas absolutas como string (no imports)
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: '/images/marker-icon-2x.png',
   iconUrl: '/images/marker-icon.png',
@@ -23,6 +26,7 @@ function MapView({ site }) {
 }
 
 export default MapView;
+
 
 
 
