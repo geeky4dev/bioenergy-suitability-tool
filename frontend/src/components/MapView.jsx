@@ -2,13 +2,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
-// Importar las imágenes NO es necesario si las sirves desde /public/images/
-// Puedes eliminar estas tres líneas si usas rutas absolutas desde public/
-// import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
-// import markerIcon from 'leaflet/dist/images/marker-icon.png';
-// import markerShadow from 'leaflet/dist/images/marker-shadow.png';
-
-// Solución para que los íconos se carguen correctamente en producción:
+// ✅ Corrección definitiva: usar rutas públicas (copiadas manualmente)
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
@@ -35,5 +29,6 @@ function MapView({ site }) {
 }
 
 export default MapView;
+
 
 
