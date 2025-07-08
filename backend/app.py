@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 import sqlite3
 
@@ -10,14 +10,17 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
-@app.route('/api/sites')
+@app.route('/api/sites', methods=['GET'])
 def get_sites():
     zoning = request.args.get('zoning', '')
     min_area = request.args.get('min_area', type=float)
     max_feedstock = request.args.get('max_feedstock', type=float)
     max_grid = request.args.get('max_grid', type=float)
 
-    query = "SELECT *, (100 - feedstock_km*5 - grid_km*3 + area) as suitability_score FROM sites WHERE 1=1"
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    query = "SELECT *, (100 - (area * 2 + feedstock_km * 5 + grid_km * 5)) AS suitability_score FROM sites WHERE 1=1"
     params = []
 
     if zoning:
@@ -33,17 +36,43 @@ def get_sites():
         query += " AND grid_km <= ?"
         params.append(max_grid)
 
-    conn = get_db_connection()
-    cursor = conn.cursor()
     cursor.execute(query, params)
-    rows = cursor.fetchall()
+    sites = cursor.fetchall()
     conn.close()
 
-    sites = [dict(row) for row in rows]
-    return jsonify(sites)
+    result = [dict(site) for site in sites]
+    return jsonify(result)
 
+@app.route('/api/sites', methods=['POST'])
+def add_site():
+    data = request.json
+    name = data.get('name')
+    lat = data.get('lat')
+    lng = data.get('lng')
+    area = data.get('area', 0)
+    feedstock_km = data.get('feedstock_km', 0)
+    grid_km = data.get('grid_km', 0)
+    zoning = data.get('zoning', '')
+
+    if not name or lat is None or lng is None or not zoning:
+        return jsonify({'error': 'Missing required fields'}), 400
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        INSERT INTO sites (name, lat, lng, area, feedstock_km, grid_km, zoning)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    """, (name, lat, lng, area, feedstock_km, grid_km, zoning))
+    conn.commit()
+    conn.close()
+
+    return jsonify({'message': 'Site added successfully'}), 201
+
+# ✅ Esta parte solo corre localmente
 if __name__ == '__main__':
     app.run(debug=True)
+
+
 
 
 
