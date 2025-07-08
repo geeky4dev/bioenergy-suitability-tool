@@ -1,9 +1,7 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS
 import sqlite3
 
 app = Flask(__name__)
-CORS(app)  # Permite CORS desde cualquier origen (en producción especifica orígenes)
 
 def get_db_connection():
     conn = sqlite3.connect('db.sqlite3')
@@ -20,12 +18,7 @@ def get_sites():
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    query = """
-        SELECT *, 
-               (100 - (area * 2 + feedstock_km * 5 + grid_km * 5)) AS suitability_score 
-        FROM sites 
-        WHERE 1=1
-    """
+    query = "SELECT *, (100 - (area * 2 + feedstock_km * 5 + grid_km * 5)) AS suitability_score FROM sites WHERE 1=1"
     params = []
 
     if zoning:
@@ -47,6 +40,7 @@ def get_sites():
 
     result = [dict(site) for site in sites]
     return jsonify(result)
+
 
 @app.route('/api/sites', methods=['POST'])
 def add_site():
@@ -73,8 +67,10 @@ def add_site():
 
     return jsonify({'message': 'Site added successfully'}), 201
 
+
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 
 
