@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
+// 👉 Cargar URL base del backend desde .env
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 function App() {
   const [sites, setSites] = useState([]);
   const [filters, setFilters] = useState({
@@ -27,7 +30,7 @@ function App() {
   const fetchSites = async (params = {}) => {
     const query = new URLSearchParams(params).toString();
     try {
-      const res = await fetch(`/api/sites?${query}`);
+      const res = await fetch(`${API_BASE}/api/sites?${query}`);
       if (!res.ok) throw new Error('Error fetching sites');
       const data = await res.json();
       setSites(data);
@@ -53,7 +56,6 @@ function App() {
   const handleAddSite = async (e) => {
     e.preventDefault();
 
-    // Validar que lat, lng, area, feedstock_km y grid_km sean números
     const parsedSite = {
       ...newSite,
       lat: parseFloat(newSite.lat),
@@ -64,7 +66,7 @@ function App() {
     };
 
     try {
-      const res = await fetch('/api/sites', {
+      const res = await fetch(`${API_BASE}/api/sites`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(parsedSite),
@@ -72,7 +74,6 @@ function App() {
 
       if (!res.ok) throw new Error('Failed to add site');
 
-      // Limpiar formulario
       setNewSite({
         name: '',
         lat: '',
@@ -83,7 +84,6 @@ function App() {
         zoning: ''
       });
 
-      // Refrescar lista
       fetchSites(filters);
     } catch (error) {
       alert('Error adding site: ' + error.message);
@@ -114,7 +114,7 @@ Suitability Score: ${site.suitability_score}
     <div style={{ padding: '1rem' }}>
       <h1>🌱 Bioenergy Site Suitability Tool</h1>
 
-      {/* Filtro */}
+      {/* Filtros */}
       <form onSubmit={handleFilter} style={{ marginBottom: '1rem' }}>
         <label>
           Zoning:{' '}
@@ -144,14 +144,14 @@ Suitability Score: ${site.suitability_score}
         <button type="submit">Apply Filters</button>
       </form>
 
-<p style={{ marginBottom: '1rem' }}>
-  🌍 Select filters to view bioenergy sites based on criteria such as zoning (type of land use), area, proximity to resources (feedstock) and to the power grid.
-</p>
+      <p style={{ marginBottom: '1rem' }}>
+        🌍 Use the filters to view bioenergy sites based on zoning, area, and proximity to feedstock and grid.
+      </p>
 
-{/* Mapa */}
-      <MapContainer center={[28.7169, 15,1319]} zoom={1.5} style={{ height: '500px' }}>
+      {/* Mapa interactivo */}
+      <MapContainer center={[0, 0]} zoom={2} style={{ height: '500px' }}>
         <TileLayer
-          attribution='&copy; OpenStreetMap'
+          attribution='&copy; OpenStreetMap contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {sites.map(site => (
@@ -172,104 +172,38 @@ Suitability Score: ${site.suitability_score}
       <form onSubmit={handleAddSite} style={{ marginBottom: '1rem', border: '1px solid #ccc', padding: '1rem', borderRadius: '8px' }}>
         <h2>Add New Site</h2>
 
-        <label>
-          Name:<br />
-          <input
-            type="text"
-            name="name"
-            value={newSite.name}
-            onChange={handleNewSiteChange}
-            placeholder="Example: Site C"
-            required
-          />
-        </label>
-        <br />
+        <label>Name:<br />
+          <input type="text" name="name" value={newSite.name} onChange={handleNewSiteChange} required />
+        </label><br />
 
-        <label>
-          Latitude:<br />
-          <input
-            type="number"
-            step="any"
-            name="lat"
-            value={newSite.lat}
-            onChange={handleNewSiteChange}
-            placeholder="-34.90"
-            required
-          />
-        </label>
-        <br />
+        <label>Latitude:<br />
+          <input type="number" step="any" name="lat" value={newSite.lat} onChange={handleNewSiteChange} required />
+        </label><br />
 
-        <label>
-          Longitude:<br />
-          <input
-            type="number"
-            step="any"
-            name="lng"
-            value={newSite.lng}
-            onChange={handleNewSiteChange}
-            placeholder="-56.16"
-            required
-          />
-        </label>
-        <br />
+        <label>Longitude:<br />
+          <input type="number" step="any" name="lng" value={newSite.lng} onChange={handleNewSiteChange} required />
+        </label><br />
 
-        <label>
-          Area (ha):<br />
-          <input
-            type="number"
-            step="any"
-            name="area"
-            value={newSite.area}
-            onChange={handleNewSiteChange}
-            placeholder="10.5"
-            required
-          />
-        </label>
-        <br />
+        <label>Area (ha):<br />
+          <input type="number" step="any" name="area" value={newSite.area} onChange={handleNewSiteChange} required />
+        </label><br />
 
-        <label>
-          Feedstock distance (km):<br />
-          <input
-            type="number"
-            step="any"
-            name="feedstock_km"
-            value={newSite.feedstock_km}
-            onChange={handleNewSiteChange}
-            placeholder="4.0"
-            required
-          />
-        </label>
-        <br />
+        <label>Feedstock distance (km):<br />
+          <input type="number" step="any" name="feedstock_km" value={newSite.feedstock_km} onChange={handleNewSiteChange} required />
+        </label><br />
 
-        <label>
-          Grid distance (km):<br />
-          <input
-            type="number"
-            step="any"
-            name="grid_km"
-            value={newSite.grid_km}
-            onChange={handleNewSiteChange}
-            placeholder="2.0"
-            required
-          />
-        </label>
-        <br />
+        <label>Grid distance (km):<br />
+          <input type="number" step="any" name="grid_km" value={newSite.grid_km} onChange={handleNewSiteChange} required />
+        </label><br />
 
-        <label>
-          Zoning:<br />
-          <select
-            name="zoning"
-            value={newSite.zoning}
-            onChange={handleNewSiteChange}
-            required
-          >
+        <label>Zoning:<br />
+          <select name="zoning" value={newSite.zoning} onChange={handleNewSiteChange} required>
             <option value="">Select zoning</option>
             <option value="industrial">Industrial</option>
             <option value="residential">Residential</option>
             <option value="rural">Rural</option>
           </select>
-        </label>
-        <br /><br />
+        </label><br /><br />
 
         <button type="submit">Add Site</button>
       </form>
@@ -278,12 +212,12 @@ Suitability Score: ${site.suitability_score}
       <button onClick={generatePDF} style={{ marginBottom: '1rem' }}>
         Generate PDF Report
       </button>
-
     </div>
   );
 }
 
 export default App;
+
 
 
 
