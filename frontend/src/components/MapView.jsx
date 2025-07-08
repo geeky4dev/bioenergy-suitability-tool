@@ -9,9 +9,9 @@ import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: markerIcon2x,
-  iconUrl: markerIcon,
-  shadowUrl: markerShadow,
+  iconRetinaUrl: '/images/marker-icon-2x.png',
+  iconUrl: '/images/marker-icon.png',
+  shadowUrl: '/images/marker-shadow.png',
 });
 
 function MapView({ site }) {
