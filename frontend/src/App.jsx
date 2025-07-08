@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+
+// Solución para que Leaflet cargue correctamente los íconos de los marcadores en Vite/React
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: new URL('leaflet/dist/images/marker-icon-2x.png', import.meta.url).href,
+  iconUrl: new URL('leaflet/dist/images/marker-icon.png', import.meta.url).href,
+  shadowUrl: new URL('leaflet/dist/images/marker-shadow.png', import.meta.url).href,
+});
 
 // Usamos la variable de entorno VITE_API_URL o vacío para desarrollo local
 const API_BASE = import.meta.env.VITE_API_URL || '';
@@ -209,6 +218,7 @@ Suitability Score: ${site.suitability_score}
 }
 
 export default App;
+
 
 
 

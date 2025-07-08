@@ -44,8 +44,8 @@ Thumbs.db                   # Windows thumbnail cache
 .git/
 
 # ─────📦 PROJECT-SPECIFIC ─────
-*.sqlite3                   # SQLite database
-db.sqlite3
+# *.sqlite3                   # SQLite database
+# db.sqlite3
 others/                     # Tu carpeta temporal (si no se versiona)
 *.pdf                       # Reportes generados (si no quieres subirlos)
 __snapshots__/              # Si usas testing tipo Jest
