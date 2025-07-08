@@ -1,0 +1,54 @@
+# ─────🔧 DEPENDENCY FOLDERS ─────
+node_modules/               # React/Vite deps
+venv/                       # Python virtual env
+__pycache__/                # Python bytecode cache
+.mypy_cache/
+.pytest_cache/
+
+# ─────🧪 BUILD OUTPUT ─────
+dist/                       # Vite build output
+dist-ssr/
+build/
+*.local                     # local dev files (optional)
+*.pyc                       # Python compiled files
+*.pyo
+*.pyd
+
+# ─────📝 LOG FILES ─────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ─────📁 ENVIRONMENT FILES ─────
+.env
+.env.*
+!.env.example               # keep example for config
+
+# ─────🧠 IDE / OS FILES ─────
+.vscode/                    # VS Code settings (optional)
+!.vscode/extensions.json    # allow team extensions config
+.idea/                      # JetBrains IDEs
+.DS_Store                   # macOS
+*.suo                       # Visual Studio
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?                       # Vim swap files
+Thumbs.db                   # Windows thumbnail cache
+
+# ─────🔒 SYSTEM / GIT ─────
+.git/
+
+# ─────📦 PROJECT-SPECIFIC ─────
+*.sqlite3                   # SQLite database
+db.sqlite3
+others/                     # Tu carpeta temporal (si no se versiona)
+*.pdf                       # Reportes generados (si no quieres subirlos)
+__snapshots__/              # Si usas testing tipo Jest
+coverage/                   # Resultados de cobertura
+
+# Optional: evitar archivos de compilació
