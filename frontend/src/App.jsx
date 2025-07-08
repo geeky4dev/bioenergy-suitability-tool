@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
+// Usamos la variable de entorno VITE_API_URL o vacío para desarrollo local
 const API_BASE = import.meta.env.VITE_API_URL || '';
 
 function App() {
@@ -208,6 +209,7 @@ Suitability Score: ${site.suitability_score}
 }
 
 export default App;
+
 
 
 
